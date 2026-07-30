@@ -1,0 +1,13 @@
+services:
+  pwa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: pwa-homelab:latest
+    container_name: pwa-homelab
+
+    ports:
+      - "8088:80"
+
+    restart: unless-stopped
