@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    image: pwa-homelab:latest
     container_name: pwa-homelab
 
     restart: unless-stopped
@@ -15,10 +14,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=homelab"
-
-      - "traefik.http.routers.pwa.rule=Host(`pwa.homelab`) || Host(`192.168.15.7`)"
+      - "traefik.http.routers.pwa.rule=Host(`pwa.homelab`)"
       - "traefik.http.routers.pwa.entrypoints=web"
-
       - "traefik.http.services.pwa.loadbalancer.server.port=80"
 
 networks:
