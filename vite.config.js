@@ -18,7 +18,7 @@ export default defineConfig({
       manifest: {
         name: 'Aplicativo PWA',
         short_name: 'PWA',
-        description: 'Aplicativo PWA de teste executado no homelab.',
+        description: 'Checklist offline com SQLite.',
 
         start_url: '/',
         scope: '/',
@@ -28,11 +28,6 @@ export default defineConfig({
         background_color: '#ffffff',
 
         icons: [
-          {
-            src: 'pwa-64x64.png',
-            sizes: '64x64',
-            type: 'image/png',
-          },
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
@@ -53,4 +48,22 @@ export default defineConfig({
       },
     }),
   ],
+
+  server: {
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+    },
+  },
+
+  preview: {
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+    },
+  },
+
+  optimizeDeps: {
+    exclude: ['@sqlite.org/sqlite-wasm'],
+  },
 })
