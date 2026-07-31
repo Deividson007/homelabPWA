@@ -15,7 +15,8 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=homelab"
       - "traefik.http.routers.pwa.rule=Host(`pwa.homelab`)"
-      - "traefik.http.routers.pwa.entrypoints=web"
+      - "traefik.http.routers.pwa.entrypoints=websecure"
+      - "traefik.http.routers.pwa.tls=true"
       - "traefik.http.services.pwa.loadbalancer.server.port=80"
 
 networks:
