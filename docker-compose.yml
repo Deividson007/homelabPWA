@@ -7,7 +7,20 @@ services:
     image: pwa-homelab:latest
     container_name: pwa-homelab
 
-    ports:
-      - "8088:80"
-
     restart: unless-stopped
+
+    networks:
+      - homelab
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=homelab"
+
+      - "traefik.http.routers.pwa.rule=Host(`pwa.homelab`) || Host(`192.168.15.7`)"
+      - "traefik.http.routers.pwa.entrypoints=web"
+
+      - "traefik.http.services.pwa.loadbalancer.server.port=80"
+
+networks:
+  homelab:
+    external: true
