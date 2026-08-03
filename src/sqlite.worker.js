@@ -23,19 +23,19 @@ async function initializeDatabase() {
   })
 
   const opfsAvailable =
-  typeof sqlite3.oo1?.OpfsDb === 'function'
+    typeof sqlite3.oo1?.OpfsDb === 'function'
 
-if (!opfsAvailable) {
-  console.error('Diagnóstico do OPFS:', {
-    crossOriginIsolated: self.crossOriginIsolated,
-    sharedArrayBuffer: typeof SharedArrayBuffer,
-    opfsDb: typeof sqlite3.oo1?.OpfsDb,
-  })
+  if (!opfsAvailable) {
+    console.error('Diagnóstico do OPFS:', {
+      crossOriginIsolated: self.crossOriginIsolated,
+      sharedArrayBuffer: typeof SharedArrayBuffer,
+      opfsDb: typeof sqlite3.oo1?.OpfsDb,
+    })
 
-  throw new Error(
-    'OPFS indisponível. Verifique os cabeçalhos COOP/COEP.',
-  )
-}
+    throw new Error(
+      'OPFS indisponível. Verifique os cabeçalhos COOP/COEP.',
+    )
+  }
 
   const db = new sqlite3.oo1.OpfsDb('/checklist.sqlite3')
 
